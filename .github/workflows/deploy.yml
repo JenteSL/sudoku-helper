@@ -33,7 +33,8 @@ jobs:
       # We add a 404.html to handle client-side routing refreshes
       - name: Setup Pages Artifacts
         run: |
-          cp build/client/index.html build/client/404.html
+          cp build/client/sudoku-helper/index.html build/client/404.html
+          cp build/client/sudoku-helper/index.html build/client/index.html
           touch build/client/.nojekyll
 
       - name: Upload artifact

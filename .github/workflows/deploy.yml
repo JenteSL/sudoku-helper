@@ -31,10 +31,10 @@ jobs:
 
       # React Router v7 SPA mode outputs to build/client
       # We add a 404.html to handle client-side routing refreshes
-      - name: Setup Pages Artifacts
-        run: |
-          cp build/client/index.html build/client/404.html
-          touch build/client/.nojekyll
+      # - name: Setup Pages Artifacts
+      #   run: |
+      #     cp build/client/index.html build/client/404.html
+      #     touch build/client/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

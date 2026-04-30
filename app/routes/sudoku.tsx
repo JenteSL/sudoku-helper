@@ -6,8 +6,8 @@ type CellValue = number | null;
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Sudoku" },
-    { name: "description", content: "Sudoku puzzle helper" },
+    { title: "Sudoku helper" },
+    { name: "description", content: "But you still do the work." },
   ];
 }
 
@@ -20,7 +20,10 @@ function getBlockIndex(row: number, col: number): number {
 }
 
 function encodeGrid(grid: CellValue[][]): string {
-  return grid.flat().map((cell) => (cell === null ? "0" : cell.toString())).join("");
+  return grid
+    .flat()
+    .map((cell) => (cell === null ? "0" : cell.toString()))
+    .join("");
 }
 
 function decodeGrid(encoded: string): CellValue[][] | null {
@@ -35,8 +38,11 @@ function decodeGrid(encoded: string): CellValue[][] | null {
 function getInitialState(searchParams: URLSearchParams) {
   const gridParam = searchParams.get("grid");
   const numParam = searchParams.get("num");
-  const grid = gridParam ? decodeGrid(gridParam) ?? createEmptyGrid() : createEmptyGrid();
-  const num = numParam && /^[1-9]$/.test(numParam) ? parseInt(numParam, 10) : null;
+  const grid = gridParam
+    ? (decodeGrid(gridParam) ?? createEmptyGrid())
+    : createEmptyGrid();
+  const num =
+    numParam && /^[1-9]$/.test(numParam) ? parseInt(numParam, 10) : null;
   return { grid, num };
 }
 
@@ -44,7 +50,9 @@ export default function Sudoku() {
   const [searchParams, setSearchParams] = useSearchParams();
   const initial = getInitialState(searchParams);
   const [grid, setGrid] = useState<CellValue[][]>(() => initial.grid);
-  const [selectedNumber, setSelectedNumber] = useState<number | null>(() => initial.num);
+  const [selectedNumber, setSelectedNumber] = useState<number | null>(
+    () => initial.num,
+  );
 
   useEffect(() => {
     const params = new URLSearchParams();
@@ -128,7 +136,7 @@ export default function Sudoku() {
                   focus:bg-blue-100 dark:focus:bg-blue-900`}
               />
             );
-          })
+          }),
         )}
       </div>
 
@@ -154,7 +162,16 @@ export default function Sudoku() {
           className="w-10 h-10 sm:w-12 sm:h-12 text-lg font-medium rounded-lg border transition-colors
             bg-white dark:bg-gray-900 text-red-600 dark:text-red-400 border-gray-400 dark:border-gray-600 hover:bg-red-50 dark:hover:bg-red-900/20"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-5 h-5 mx-auto"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
             <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
             <path d="M3 3v5h5" />
           </svg>

@@ -60,7 +60,7 @@ export default function Sudoku() {
     if (selectedNumber !== null) {
       params.set("num", selectedNumber.toString());
     }
-    setSearchParams(params, { replace: true });
+    setSearchParams(params, { replace: true, preventScrollReset: true });
   }, [grid, selectedNumber, setSearchParams]);
 
   const highlightedRows = new Set<number>();

@@ -98,7 +98,7 @@ export default function Sudoku() {
     <div className="min-h-screen flex flex-col items-center justify-center p-4">
       <h1 className="text-2xl font-bold mb-6">Sudoku</h1>
 
-      <div className="inline-grid grid-cols-9 border-2 border-gray-800 dark:border-gray-200">
+      <div className="inline-grid grid-cols-9 border-2 border-gray-800 dark:border-gray-200 max-w-full overflow-x-auto">
         {grid.map((row, r) =>
           row.map((cell, c) => {
             const isHighlighted =
@@ -130,7 +130,7 @@ export default function Sudoku() {
                     updateCell(r, c, parseInt(val, 10));
                   }
                 }}
-                className={`w-10 h-10 sm:w-12 sm:h-12 text-center text-lg font-medium outline-none
+                className={`w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-center text-sm sm:text-lg font-medium outline-none
                   ${borderRight} ${borderBottom}
                   ${isHighlighted ? "bg-yellow-200 dark:bg-yellow-800" : "bg-white dark:bg-gray-900"}
                   focus:bg-blue-100 dark:focus:bg-blue-900`}
@@ -140,14 +140,14 @@ export default function Sudoku() {
         )}
       </div>
 
-      <div className="flex gap-2 mt-6">
+      <div className="flex flex-wrap gap-2 justify-center mt-6">
         {Array.from({ length: 9 }, (_, i) => i + 1).map((num) => (
           <button
             key={num}
             onClick={() =>
               setSelectedNumber(selectedNumber === num ? null : num)
             }
-            className={`w-10 h-10 sm:w-12 sm:h-12 text-lg font-medium rounded-lg border transition-colors
+            className={`w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-sm sm:text-lg font-medium rounded-lg border transition-colors
               ${
                 selectedNumber === num
                   ? "bg-blue-500 text-white border-blue-500"
@@ -159,12 +159,12 @@ export default function Sudoku() {
         ))}
         <button
           onClick={resetGrid}
-          className="w-10 h-10 sm:w-12 sm:h-12 text-lg font-medium rounded-lg border transition-colors
+          className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-sm sm:text-lg font-medium rounded-lg border transition-colors
             bg-white dark:bg-gray-900 text-red-600 dark:text-red-400 border-gray-400 dark:border-gray-600 hover:bg-red-50 dark:hover:bg-red-900/20"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="w-5 h-5 mx-auto"
+            className="w-4 h-4 sm:w-5 sm:h-5 mx-auto"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
